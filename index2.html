@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Creative Guild Skills Test - Justin</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+    
+    <div id="profileInfo">
+        <div class="proimg"></div>
+        <div class="proinfo"></div>
+        <div class="procontact"></div><img src="" alt="">
+    </div>
+    <div id="album">
+        
+    </div>
+    
+<script>
+    function loadProfile(){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8888/CG-SkillsTest/api/profile/read-single.php?id=1', true);
+        
+        xhr.onload = function(){
+            if(this.status == 200){
+                var profile = JSON.parse(this.responseText);
+
+                var profileOutput = '';
+                var albumOutput = '';
+
+                profileOutput += '<div class="proimg"><img src="'+profile.profile_picture+'" alt="'+profile.name+'"></div>'+
+                '<div class="proinfo"><h1>'+profile.name+'</h1><b>Bio</b>'+profile.bio+'</div>'+
+                '<div class="procontact"><b>Phone</b>'+profile.phone+'<b>Email</b>'+profile.email+'</div>';
+
+                document.getElementById('profileInfo').innerHTML = profileOutput;
+                
+                for(var i in profile.album){//profile.album[i]
+                        albumOutput += '<div class="photoBox">' +
+                        '<div class="title" style="background-image: url('+profile.album[i].img+')">' +
+                        profile.album[i].title+'</div>' +
+                        '<div class="photoinfo">'+profile.album[i].description+'</div>' +
+                        '<span class="date">'+profile.album[i].date+'</span>';
+                        if(profile.album[i].featured == true){
+                            albumOutput +='<span class="featured"></span>';
+                        }
+                        albumOutput +='</div>';
+                  }
+
+                  document.getElementById('album').innerHTML = albumOutput;
+
+            }
+        }
+    xhr.send();
+    }
+    loadProfile();
+</script>
+</body>
+</html>
