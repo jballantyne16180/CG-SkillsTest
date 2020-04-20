@@ -8,16 +8,11 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-    
-    <div id="profileInfo">
-        <div class="proimg"></div>
-        <div class="proinfo"></div>
-        <div class="procontact"></div><img src="" alt="">
+    <div class="background"></div>
+    <div class="site">
+        <div id="profileInfo"></div>
+        <div id="album"></div>
     </div>
-    <div id="album">
-        
-    </div>
-    
 <script>
     function loadProfile(){
         var xhr = new XMLHttpRequest();
@@ -31,19 +26,18 @@
                 var albumOutput = '';
 
                 profileOutput += '<div class="proimg"><img src="'+profile.profile_picture+'" alt="'+profile.name+'"></div>'+
-                '<div class="proinfo"><h1>'+profile.name+'</h1><b>Bio</b>'+profile.bio+'</div>'+
-                '<div class="procontact"><b>Phone</b>'+profile.phone+'<b>Email</b>'+profile.email+'</div>';
+                '<div class="procontent"><h1>'+profile.name+'</h1><div class="proinfo"><b>Bio</b> '+profile.bio+'</div>'+
+                '<div class="procontact"><b>Phone</b> <a href="tel:'+profile.phone+'">'+profile.phone+'</a><b>Email</b> <a href="mailto:'+profile.email+'">'+profile.email+'</a></div></div>';
 
                 document.getElementById('profileInfo').innerHTML = profileOutput;
                 
                 for(var i in profile.album){//profile.album[i]
                         albumOutput += '<div class="photoBox">' +
-                        '<div class="title" style="background-image: url('+profile.album[i].img+')">' +
-                        profile.album[i].title+'</div>' +
+                        '<div class="title" style="background-image: url('+profile.album[i].img+')"><span>'+profile.album[i].title+'</span></div>' +
                         '<div class="photoinfo">'+profile.album[i].description+'</div>' +
                         '<span class="date">'+profile.album[i].date+'</span>';
                         if(profile.album[i].featured == true){
-                            albumOutput +='<span class="featured"></span>';
+                            albumOutput +='<div class="featured"><span></span></div>';
                         }
                         albumOutput +='</div>';
                   }
