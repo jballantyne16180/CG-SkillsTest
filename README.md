@@ -1,5 +1,23 @@
 # CG-SkillsTest
 
+Front-end Development process:
+
+1. Write ajax to pull all the data from the JSON file
+
+2. Test to make sure it's all pulling correctly
+
+3. Build the page structure (div, span, etc)
+
+4. Write the page styles
+
+5. Check and make adjustments for mobile.
+
+6. Test in multiple browsers to make sure it looks the same in all of them.
+
+I chose to stick with plain javascript just to keep it streamlined, but if I was already using jQuery for other parts of the site, then I would have used that. In this case, it was unnecessary and would slow things down. The hardest part of doing the front end was trying to match the colours. Otherwise, I didn't really get stuck on anything. 
+
+
+
 Backend Development process:
 
 1.Plan database structure for the data given and ensure it could easily support additional profiles with their own albums. (additional albums for a single profile could be supported with some minor tweaking)
